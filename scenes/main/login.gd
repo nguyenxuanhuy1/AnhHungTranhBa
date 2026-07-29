@@ -83,19 +83,41 @@ func _on_status_changed(message: String) -> void:
 	_status_label.add_theme_color_override("font_color", COLOR_BUSY if message != "" else COLOR_IDLE)
 
 
+const CREATE_CHAR_SCENE := "res://scenes/main/create_character.tscn"
+const WORLD_SCENE := "res://scenes/main/world.tscn"
+
 func _on_login_succeeded(account: Dictionary) -> void:
 	var display_name := String(account.get("display_name", "Anh Hùng"))
 	_status_label.add_theme_color_override("font_color", COLOR_BUSY)
-	_status_label.text = "Chào mừng, %s!" % display_name
+	_status_label.text = "Đang kiểm tra nhân vật..."
 
-	if ResourceLoader.exists(NEXT_SCENE):
-		get_tree().change_scene_to_file(NEXT_SCENE)
+	var token := _auth.get_access_token()
+	var char_client := CharacterClient.new()
+	add_child(char_client)
+
+	var characters: Array = await char_client.fetch_characters(token)
+
+	if characters.is_empty():
+		# Chưa có nhân vật nào -> Chuyển sang màn hình Tạo Nhân Vật
+		if ResourceLoader.exists(CREATE_CHAR_SCENE):
+			var next_scene = load(CREATE_CHAR_SCENE).instantiate()
+			get_tree().root.add_child(next_scene)
+			if next_scene.has_method("set_access_token"):
+				next_scene.set_access_token(token)
+			queue_free()
+		else:
+			_set_busy(false)
+			_status_label.text = "Chưa có nhân vật! (Màn hình tạo nhân vật chưa sẵn sàng)"
 	else:
-		# Chưa làm màn hình chọn nhân vật — dừng ở đây để còn kiểm tra
-		# luồng đăng nhập đã chạy đúng chưa.
-		_set_busy(false)
-		_google_button.text = "Đăng nhập thành công"
-		_google_button.disabled = true
+		# Đã có nhân vật -> Vào thẳng game!
+		_status_label.text = "Chào mừng %s trở lại! Đang vào game..." % characters[0].get("name", display_name)
+		await get_tree().create_timer(1.0).timeout
+		if ResourceLoader.exists(WORLD_SCENE):
+			get_tree().change_scene_to_file(WORLD_SCENE)
+		else:
+			_set_busy(false)
+			_google_button.text = "Vào game (Bản đồ đang phát triển)"
+			_google_button.disabled = true
 
 
 func _on_login_failed(code: String, message: String) -> void:

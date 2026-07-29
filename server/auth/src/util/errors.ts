@@ -19,7 +19,12 @@ export class AuthError extends Error {
 
 export const Errors = {
   invalidRequest: (detail?: Record<string, unknown>) =>
-    new AuthError('invalid_request', 400, 'Yêu cầu không hợp lệ.', detail),
+    new AuthError(
+      'invalid_request',
+      400,
+      (typeof detail?.message === 'string' && detail.message) || 'Yêu cầu không hợp lệ.',
+      detail,
+    ),
 
   sessionNotFound: () =>
     new AuthError('session_not_found', 404, 'Phiên đăng nhập không tồn tại hoặc đã hết hạn.'),
@@ -48,6 +53,9 @@ export const Errors = {
 
   googleFailed: (detail?: Record<string, unknown>) =>
     new AuthError('google_failed', 502, 'Không xác thực được với Google. Vui lòng thử lại.', detail),
+
+  notFound: (detail?: Record<string, unknown>) =>
+    new AuthError('not_found', 404, 'Không tìm thấy tài nguyên.', detail),
 
   internal: (detail?: Record<string, unknown>) =>
     new AuthError('internal_error', 500, 'Lỗi hệ thống. Vui lòng thử lại sau.', detail),

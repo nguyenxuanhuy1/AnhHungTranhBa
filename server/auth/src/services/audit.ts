@@ -14,6 +14,7 @@ export type AuditEvent =
   | 'account.created'
   | 'account.logout'
   | 'account.delete_requested'
+  | 'character.created'
 
 /**
  * Ghi nhật ký kiểm toán.

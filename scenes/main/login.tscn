@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene format=3 uid="uid://dalcfhtnuiftx"]
 
-[ext_resource type="Script" path="res://scenes/main/login.gd" id="1_login"]
-[ext_resource type="Texture2D" path="res://assets/ui/login_bg.png" id="2_bg"]
+[ext_resource type="Script" uid="uid://d0hjoyh4f3lbg" path="res://scenes/main/login.gd" id="1_login"]
+[ext_resource type="Texture2D" uid="uid://wmwwsteircfq" path="res://assets/ui/login_bg.png" id="2_bg"]
 
 [sub_resource type="Gradient" id="Gradient_vig"]
 offsets = PackedFloat32Array(0, 0.42, 1)
@@ -11,7 +11,6 @@ colors = PackedColorArray(0.043, 0.027, 0.055, 0.32, 0.035, 0.023, 0.047, 0.45, 
 gradient = SubResource("Gradient_vig")
 width = 4
 height = 256
-fill_from = Vector2(0, 0)
 fill_to = Vector2(0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
@@ -46,23 +45,23 @@ shadow_color = Color(0, 0, 0, 0.29)
 shadow_size = 6
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g_hover"]
-content_margin_left = 22.0
-content_margin_top = 15.0
-content_margin_right = 22.0
-content_margin_bottom = 15.0
-bg_color = Color(0.937, 0.945, 0.961, 1)
-corner_radius_top_left = 9
-corner_radius_top_right = 9
-corner_radius_bottom_right = 9
-corner_radius_bottom_left = 9
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g_pressed"]
 content_margin_left = 22.0
 content_margin_top = 15.0
 content_margin_right = 22.0
 content_margin_bottom = 15.0
 bg_color = Color(0.855, 0.871, 0.898, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g_hover"]
+content_margin_left = 22.0
+content_margin_top = 15.0
+content_margin_right = 22.0
+content_margin_bottom = 15.0
+bg_color = Color(0.937, 0.945, 0.961, 1)
 corner_radius_top_left = 9
 corner_radius_top_right = 9
 corner_radius_bottom_right = 9
@@ -79,7 +78,7 @@ corner_radius_top_right = 9
 corner_radius_bottom_right = 9
 corner_radius_bottom_left = 9
 
-[node name="Login" type="Control"]
+[node name="Login" type="Control" unique_id=1989016868]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,7 +87,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_login")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=52880326]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,7 +99,7 @@ texture = ExtResource("2_bg")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Vignette" type="TextureRect" parent="."]
+[node name="Vignette" type="TextureRect" parent="." unique_id=1073409953]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,33 +110,30 @@ mouse_filter = 2
 texture = SubResource("GradientTexture2D_vig")
 expand_mode = 1
 
-[node name="Content" type="MarginContainer" parent="."]
+[node name="Content" type="MarginContainer" parent="." unique_id=798184329]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 28
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 24
 
-[node name="VBox" type="VBoxContainer" parent="Content"]
+[node name="VBox" type="VBoxContainer" parent="Content" unique_id=109676208]
 layout_mode = 2
-mouse_filter = 1
 theme_override_constants/separation = 6
 
-[node name="TopSpacer" type="Control" parent="Content/VBox"]
+[node name="TopSpacer" type="Control" parent="Content/VBox" unique_id=886662547]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.35
 mouse_filter = 2
 
-[node name="TitleLabel" type="Label" parent="Content/VBox"]
+[node name="TitleLabel" type="Label" parent="Content/VBox" unique_id=1206349324]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.965, 0.878, 0.663, 1)
 theme_override_colors/font_outline_color = Color(0.055, 0.031, 0.02, 1)
 theme_override_constants/outline_size = 10
@@ -145,9 +141,8 @@ theme_override_font_sizes/font_size = 52
 text = "ANH HÙNG XƯNG BÁ"
 horizontal_alignment = 1
 
-[node name="SubtitleLabel" type="Label" parent="Content/VBox"]
+[node name="SubtitleLabel" type="Label" parent="Content/VBox" unique_id=678856931]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.769, 0.686, 0.573, 1)
 theme_override_colors/font_outline_color = Color(0.055, 0.031, 0.02, 1)
 theme_override_constants/outline_size = 7
@@ -155,50 +150,49 @@ theme_override_font_sizes/font_size = 18
 text = "Ngũ Hành Tương Khắc · Xưng Bá Giang Hồ"
 horizontal_alignment = 1
 
-[node name="MidSpacer" type="Control" parent="Content/VBox"]
+[node name="MidSpacer" type="Control" parent="Content/VBox" unique_id=821657351]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="LoginPanel" type="PanelContainer" parent="Content/VBox"]
+[node name="LoginPanel" type="PanelContainer" parent="Content/VBox" unique_id=1198530017]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="PanelVBox" type="VBoxContainer" parent="Content/VBox/LoginPanel"]
+[node name="PanelVBox" type="VBoxContainer" parent="Content/VBox/LoginPanel" unique_id=184208759]
 layout_mode = 2
-mouse_filter = 1
 theme_override_constants/separation = 12
 
-[node name="GoogleButton" type="Button" parent="Content/VBox/LoginPanel/PanelVBox"]
+[node name="GoogleButton" type="Button" parent="Content/VBox/LoginPanel/PanelVBox" unique_id=981062076]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(0.153, 0.161, 0.176, 1)
-theme_override_colors/font_hover_color = Color(0.106, 0.114, 0.129, 1)
 theme_override_colors/font_pressed_color = Color(0.106, 0.114, 0.129, 1)
+theme_override_colors/font_hover_color = Color(0.106, 0.114, 0.129, 1)
 theme_override_colors/font_disabled_color = Color(0.35, 0.345, 0.337, 1)
 theme_override_constants/h_separation = 12
 theme_override_font_sizes/font_size = 19
 theme_override_styles/normal = SubResource("StyleBoxFlat_g_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_g_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_g_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_g_disabled")
 text = "Đăng nhập bằng Google"
 
-[node name="StatusLabel" type="Label" parent="Content/VBox/LoginPanel/PanelVBox"]
+[node name="StatusLabel" type="Label" parent="Content/VBox/LoginPanel/PanelVBox" unique_id=846030858]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 22)
+visible = false
+custom_minimum_size = Vector2(340, 22)
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.722, 0.671, 0.596, 1)
 theme_override_font_sizes/font_size = 15
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="CancelButton" type="Button" parent="Content/VBox/LoginPanel/PanelVBox"]
+[node name="CancelButton" type="Button" parent="Content/VBox/LoginPanel/PanelVBox" unique_id=1365200971]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -209,12 +203,12 @@ theme_override_font_sizes/font_size = 15
 text = "Huỷ"
 flat = true
 
-[node name="LegalSpacer" type="Control" parent="Content/VBox"]
+[node name="LegalSpacer" type="Control" parent="Content/VBox" unique_id=1640870283]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="LegalLabel" type="RichTextLabel" parent="Content/VBox"]
+[node name="LegalLabel" type="RichTextLabel" parent="Content/VBox" unique_id=314557280]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
@@ -226,13 +220,13 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 2
 
-[node name="BottomSpacer" type="Control" parent="Content/VBox"]
+[node name="BottomSpacer" type="Control" parent="Content/VBox" unique_id=1776869749]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.22
 mouse_filter = 2
 
-[node name="VersionLabel" type="Label" parent="."]
+[node name="VersionLabel" type="Label" parent="." unique_id=394594353]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 2
@@ -243,7 +237,6 @@ offset_top = -30.0
 offset_right = 140.0
 offset_bottom = -8.0
 grow_vertical = 0
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.494, 0.451, 0.4, 1)
 theme_override_font_sizes/font_size = 12
 text = "v0.1.0"

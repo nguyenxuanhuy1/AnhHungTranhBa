@@ -1,0 +1,191 @@
+[gd_scene load_steps=4 format=3 uid="uid://c_create_char_scene"]
+
+[ext_resource type="Script" path="res://scenes/main/create_character.gd" id="1_create_char"]
+[ext_resource type="Texture2D" path="res://assets/ui/create_char_bg.png" id="2_bg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dark_panel"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.06, 0.05, 0.05, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65, 0.52, 0.30, 0.6)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_size = 12
+
+[node name="CreateCharacter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_create_char")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Content" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 26
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 26
+
+[node name="MainVBox" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="TitleLabel" type="Label" parent="Content/MainVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.90, 0.70, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 38
+text = "KHỞI TẠO NHÂN VẬT"
+horizontal_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="Content/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+
+[node name="ElementPanelContainer" type="PanelContainer" parent="Content/MainVBox/HBox"]
+custom_minimum_size = Vector2(310, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dark_panel")
+
+[node name="ElementPanel" type="VBoxContainer" parent="Content/MainVBox/HBox/ElementPanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SelectElementTitle" type="Label" parent="Content/MainVBox/HBox/ElementPanelContainer/ElementPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.88, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 18
+text = "Chọn Hệ Ngũ Hành:"
+
+[node name="BtnKim" type="Button" parent="Content/MainVBox/HBox/ElementPanelContainer/ElementPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "⚡ Hệ Kim (Lôi / Bạo Kích)"
+
+[node name="BtnMoc" type="Button" parent="Content/MainVBox/HBox/ElementPanelContainer/ElementPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "🍃 Hệ Mộc (Độc Tố / DoT)"
+
+[node name="BtnThuy" type="Button" parent="Content/MainVBox/HBox/ElementPanelContainer/ElementPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "❄️ Hệ Thủy (Băng / Hồi Phục)"
+
+[node name="BtnHoa" type="Button" parent="Content/MainVBox/HBox/ElementPanelContainer/ElementPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "🔥 Hệ Hỏa (Bộc Phá / Thiêu Đốt)"
+
+[node name="BtnTho" type="Button" parent="Content/MainVBox/HBox/ElementPanelContainer/ElementPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "🛡️ Hệ Thổ (Phòng Thủ / Stun)"
+
+[node name="InfoPanelContainer" type="PanelContainer" parent="Content/MainVBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dark_panel")
+
+[node name="InfoPanel" type="VBoxContainer" parent="Content/MainVBox/HBox/InfoPanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ElementTitleLabel" type="Label" parent="Content/MainVBox/HBox/InfoPanelContainer/InfoPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 26
+text = "Hệ Kim"
+
+[node name="ElementWeaponLabel" type="Label" parent="Content/MainVBox/HBox/InfoPanelContainer/InfoPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.6, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 17
+text = "Vũ khí tân thủ: Thanh Long Kiếm"
+
+[node name="ElementDescLabel" type="Label" parent="Content/MainVBox/HBox/InfoPanelContainer/InfoPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.92, 0.92, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 15
+autowrap_mode = 3
+
+[node name="NameHBox" type="HBoxContainer" parent="Content/MainVBox/HBox/InfoPanelContainer/InfoPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Content/MainVBox/HBox/InfoPanelContainer/InfoPanel/NameHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.88, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 16
+text = "Tên nhân vật:"
+
+[node name="NameInput" type="LineEdit" parent="Content/MainVBox/HBox/InfoPanelContainer/InfoPanel/NameHBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 42)
+layout_mode = 2
+placeholder_text = "Nhập tên nhân vật..."
+max_length = 16
+
+[node name="CreateButton" type="Button" parent="Content/MainVBox/HBox/InfoPanelContainer/InfoPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 52)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 18
+text = "XÁC NHẬN TẠO"
+
+[node name="StatusLabel" type="Label" parent="Content/MainVBox/HBox/InfoPanelContainer/InfoPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.75, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+autowrap_mode = 3

@@ -5,6 +5,7 @@ import { config } from './config'
 import { closePool, pool } from './db'
 import { globalLimiter } from './middleware/rate_limit'
 import { authRouter } from './routes/auth'
+import { characterRouter } from './routes/character'
 import { cleanupExpired } from './services/tokens'
 import { AuthError } from './util/errors'
 import { logger } from './util/logger'
@@ -70,6 +71,7 @@ app.get('/health', async (_req, res) => {
 })
 
 app.use('/auth', authRouter)
+app.use('/auth/characters', characterRouter)
 
 app.use((_req, res) => {
   res.status(404).json({ error: 'not_found', message: 'Không tìm thấy endpoint.' })

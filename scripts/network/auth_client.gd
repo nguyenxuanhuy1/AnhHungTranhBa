@@ -62,6 +62,10 @@ func _notification(what: int) -> void:
 #  API công khai
 # =====================================================================
 
+func get_access_token() -> String:
+	return _access_token
+
+
 ## Thử đăng nhập lại bằng token đã lưu. Gọi lúc mở game.
 ## Trả về true nếu vào được luôn, false nếu cần bấm đăng nhập Google.
 func try_auto_login() -> bool:
