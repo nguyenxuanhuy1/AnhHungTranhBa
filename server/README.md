@@ -16,20 +16,40 @@ nói chuyện với server bản cũ.
 Nếu team backend muốn repo riêng, hãy xóa thư mục này và thay bằng git submodule —
 nhưng vẫn phải khóa version giao thức.
 
-## Cấu trúc gợi ý
+## Cấu trúc
 
 ```text
 server/
-├── src/
-│   ├── net/          # TCP/UDP/WebSocket, mã hóa, giải mã packet
-│   ├── world/        # Zone/Channel, AOI grid, tick loop
-│   ├── combat/       # Tính sát thương, ngũ hành, buff — bản chuẩn
-│   ├── persistence/  # Database: nhân vật, kho đồ, bang hội
-│   └── anticheat/    # Kiểm tra tốc độ di chuyển, tần suất kỹ năng
-├── proto/            # Định nghĩa packet dùng CHUNG với client
-├── config/
+├── auth/             # ✅ ĐÃ LÀM — Auth service (Node.js + TypeScript + PostgreSQL)
+│   ├── src/
+│   ├── migrations/
+│   └── README.md     #    Hướng dẫn lấy key Google + chạy thử
+│
+├── game/             # ⏳ CHƯA LÀM — Server realtime
+│   ├── net/          #    TCP/UDP/WebSocket, mã hóa, giải mã packet
+│   ├── world/        #    Zone/Channel, AOI grid, tick loop
+│   ├── combat/       #    Tính sát thương, ngũ hành, buff — bản chuẩn
+│   ├── persistence/  #    Database: nhân vật, kho đồ, bang hội
+│   └── anticheat/    #    Kiểm tra tốc độ di chuyển, tần suất kỹ năng
+│
+├── proto/            # ⏳ Định nghĩa packet dùng CHUNG với client
 └── README.md
 ```
+
+### Vì sao tách `auth` và `game`?
+
+Chúng có hình dạng hoàn toàn khác nhau và nên được mở rộng độc lập:
+
+| | `auth/` | `game/` |
+|---|---|---|
+| Giao thức | HTTP hỏi–đáp, kết nối ngắn | Socket giữ mở hàng giờ |
+| Tần suất | Vài lần mỗi phiên chơi | 15 lần mỗi giây, mỗi người chơi |
+| Cách mở rộng | Thêm instance tuỳ ý, không giữ trạng thái | Chia theo Zone, giữ trạng thái thế giới |
+| Ngôn ngữ | Node.js (đã chọn) | Có thể là Go/C++ để đạt hiệu năng tick loop |
+
+Server realtime **không cần gọi sang auth service** để kiểm tra người chơi:
+access token là JWT ký bằng `JWT_SECRET` chung, chỉ cần verify chữ ký tại chỗ.
+Nhờ vậy auth service không trở thành nút thắt cổ chai khi vào giờ cao điểm.
 
 ## Yêu cầu kỹ thuật (theo GDD mục 3)
 
