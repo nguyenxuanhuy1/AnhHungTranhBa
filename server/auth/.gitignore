@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.log
+
+# Bien moi truong that - CHUA CLIENT SECRET, KHONG BAO GIO COMMIT
+.env
+.env.*
+!.env.example
