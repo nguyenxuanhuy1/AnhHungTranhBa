@@ -38,12 +38,15 @@ const ELEMENT_INFO := {
 	}
 }
 
+const GENDER_PREVIEW_PATH := "res://assets/ui/portraits/default_%s.png"
+
 @onready var _name_input: LineEdit = %NameInput
 @onready var _element_desc_label: Label = %ElementDescLabel
 @onready var _element_weapon_label: Label = %ElementWeaponLabel
 @onready var _element_title_label: Label = %ElementTitleLabel
 @onready var _create_button: Button = %CreateButton
 @onready var _status_label: Label = %StatusLabel
+@onready var _character_preview: TextureRect = %CharacterPreview
 
 # Nút 5 hệ ngũ hành
 @onready var _btn_kim: Button = %BtnKim
@@ -51,6 +54,10 @@ const ELEMENT_INFO := {
 @onready var _btn_thuy: Button = %BtnThuy
 @onready var _btn_hoa: Button = %BtnHoa
 @onready var _btn_tho: Button = %BtnTho
+
+# Nút chọn giới tính
+@onready var _btn_male: Button = %BtnMale
+@onready var _btn_female: Button = %BtnFemale
 
 var _char_client: CharacterClient
 var _selected_element: String = "kim"
@@ -73,9 +80,13 @@ func _ready() -> void:
 	_btn_hoa.pressed.connect(func(): _select_element("hoa"))
 	_btn_tho.pressed.connect(func(): _select_element("tho"))
 
+	_btn_male.pressed.connect(func(): _select_gender("male"))
+	_btn_female.pressed.connect(func(): _select_gender("female"))
+
 	_create_button.pressed.connect(_on_create_pressed)
 
 	_select_element("kim")
+	_select_gender("male")
 	_status_label.text = ""
 
 
@@ -94,6 +105,20 @@ func _select_element(element: String) -> void:
 	_element_desc_label.text = info.get("desc", "")
 
 
+func _select_gender(gender: String) -> void:
+	_selected_gender = gender
+
+	_btn_male.disabled = gender == "male"
+	_btn_female.disabled = gender == "female"
+
+	var preview_path := GENDER_PREVIEW_PATH % gender
+	if ResourceLoader.exists(preview_path):
+		_character_preview.texture = load(preview_path)
+	else:
+		# Chưa có ảnh preview cho giới tính này — tránh crash, để trống.
+		_character_preview.texture = null
+
+
 func _on_create_pressed() -> void:
 	var char_name := _name_input.text.strip_edges()
 	if char_name.length() < 3:
@@ -109,6 +134,8 @@ func _on_create_pressed() -> void:
 
 func _on_character_created(character: Dictionary) -> void:
 	_status_label.text = "Tạo nhân vật %s thành công! Đang vào game..." % character.get("name", "")
+	PlayerState.set_character(character)
+	PlayerState.access_token = _access_token
 	await get_tree().create_timer(1.0).timeout
 
 	if ResourceLoader.exists(WORLD_SCENE):

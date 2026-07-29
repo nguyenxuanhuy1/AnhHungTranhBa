@@ -118,6 +118,50 @@ custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 text = "🛡️ Hệ Thổ (Phòng Thủ / Stun)"
 
+[node name="PreviewPanelContainer" type="PanelContainer" parent="Content/MainVBox/HBox"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dark_panel")
+
+[node name="PreviewPanel" type="VBoxContainer" parent="Content/MainVBox/HBox/PreviewPanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="SelectGenderTitle" type="Label" parent="Content/MainVBox/HBox/PreviewPanelContainer/PreviewPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.88, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 18
+text = "Chọn Giới Tính:"
+horizontal_alignment = 1
+
+[node name="GenderHBox" type="HBoxContainer" parent="Content/MainVBox/HBox/PreviewPanelContainer/PreviewPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="BtnMale" type="Button" parent="Content/MainVBox/HBox/PreviewPanelContainer/PreviewPanel/GenderHBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 40)
+layout_mode = 2
+text = "♂ Nam"
+
+[node name="BtnFemale" type="Button" parent="Content/MainVBox/HBox/PreviewPanelContainer/PreviewPanel/GenderHBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 40)
+layout_mode = 2
+text = "♀ Nữ"
+
+[node name="CharacterPreview" type="TextureRect" parent="Content/MainVBox/HBox/PreviewPanelContainer/PreviewPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+
 [node name="InfoPanelContainer" type="PanelContainer" parent="Content/MainVBox/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3

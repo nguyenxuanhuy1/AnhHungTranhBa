@@ -111,6 +111,8 @@ func _on_login_succeeded(account: Dictionary) -> void:
 	else:
 		# Đã có nhân vật -> Vào thẳng game!
 		_status_label.text = "Chào mừng %s trở lại! Đang vào game..." % characters[0].get("name", display_name)
+		PlayerState.set_character(characters[0])
+		PlayerState.access_token = token
 		await get_tree().create_timer(1.0).timeout
 		if ResourceLoader.exists(WORLD_SCENE):
 			get_tree().change_scene_to_file(WORLD_SCENE)
