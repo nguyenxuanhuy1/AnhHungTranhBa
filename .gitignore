@@ -1,0 +1,37 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Bản build xuất ra
+/export/
+/build/
+*.apk
+*.aab
+*.ipa
+*.pck
+*.zip
+
+# Khóa ký và cấu hình riêng của từng máy — TUYỆT ĐỐI không commit
+export_credentials.cfg
+*.keystore
+*.jks
+*.mobileprovision
+*.p12
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Log và file tạm
+*.log
+*.tmp
+
+# LƯU Ý: file .import PHẢI được commit.
+# Nếu bỏ qua chúng, mỗi máy sẽ import ra UID khác nhau
+# và mọi tham chiếu texture trong scene sẽ đứt.
