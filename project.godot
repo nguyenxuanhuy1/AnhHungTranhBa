@@ -17,6 +17,10 @@ run/main_scene="res://scenes/main/login.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerState="*res://scripts/autoload/player_state.gd"
+
 [display]
 
 window/size/viewport_width=1280
@@ -24,10 +28,6 @@ window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=4
-
-[autoload]
-
-PlayerState="*res://scripts/autoload/player_state.gd"
 
 [physics]
 
